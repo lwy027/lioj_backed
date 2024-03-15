@@ -33,11 +33,13 @@ export class QuestionSubmit {
   @Column({
     comment: '编程语言',
     length: 128,
+    nullable: false,
   })
   language: string;
   @Column({
     comment: '用户提交代码',
     type: 'text',
+    nullable: false,
   })
   code: string;
   @Column({
@@ -70,13 +72,16 @@ export class QuestionSubmit {
   updateDate: Date;
 
   //关联创建题目的用户
-  @ManyToOne(() => User)
+  @ManyToOne(() => User, {
+    nullable: false,
+  })
   user: User;
 
   //关键提交题目id
   @ManyToOne(() => Question, {
     onDelete: 'CASCADE',
     onUpdate: 'CASCADE',
+    nullable: false,
   })
   question: Question;
 }

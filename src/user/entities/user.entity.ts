@@ -25,12 +25,14 @@ export class User {
   @Column({
     comment: '用户头像',
     length: 1024,
+    nullable: true,
   })
   userAvator: string;
   @Column({
-    comment: '用户角色 user/admin/ban',
+    comment: '用户角色 0 user 1 admin -1 ban',
+    default: 0,
   })
-  userRole: string;
+  userRole: number;
   @CreateDateColumn({
     comment: '创建时间',
   })
