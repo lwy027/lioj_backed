@@ -12,6 +12,7 @@ import { APP_GUARD } from '@nestjs/core';
 import { LoginGuard } from './aop/login.guard';
 import { JudgeQuestionModule } from './judge-question/judge-question.module';
 import { QuestionSubmit } from './judge-question/entities/questionSubmit.entity';
+import { PermissionGuard } from './aop/permission.guard';
 @Module({
   imports: [
     UserModule,
@@ -61,6 +62,10 @@ import { QuestionSubmit } from './judge-question/entities/questionSubmit.entity'
     {
       provide: APP_GUARD,
       useClass: LoginGuard,
+    },
+    {
+      provide: APP_GUARD,
+      useClass: PermissionGuard,
     },
   ],
 })

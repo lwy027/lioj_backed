@@ -24,7 +24,7 @@ export class UserController {
     vo.accessToken = this.jwtService.sign({
       userId: vo.userInfo.id,
       username: vo.userInfo.userName,
-      useRole: vo.userInfo.userRole,
+      userRole: vo.userInfo.userRole,
       userAvotor: vo.userInfo.userAvotor,
     });
     return vo;

@@ -41,10 +41,9 @@ export class LoginGuard implements CanActivate {
     //因为有的接口是不需要进行登录就可以访问的这里还需要添加对接口的权限控制,使用setmatedata实现
     //获取setmatedata的value
     const requireLogin = this.reflactor.getAllAndOverride('require_login', [
-      context.getClass(),
       context.getHandler(),
+      context.getClass(),
     ]);
-    console.log(requireLogin);
     //如果当前接口不需要登录直接返回，不需要走下面的逻辑
     if (!requireLogin) {
       return true;
@@ -67,6 +66,7 @@ export class LoginGuard implements CanActivate {
         userRole: data.userRole,
         userAvotor: data.userAvotor,
       };
+      console.log(request.user);
       return true;
     } catch (error) {
       throw new UnauthorizedException('token已失效请重新登录');

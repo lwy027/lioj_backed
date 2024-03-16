@@ -11,10 +11,11 @@ import {
 } from '@nestjs/common';
 import { QuestionService } from './question.service';
 import { AddQuestionDto } from './dto/addQuestion.dto';
-import { RequireLogin } from 'src/utils/custom.decorator';
+import { RequireAdmin, RequireLogin } from 'src/utils/custom.decorator';
 import { updateQuestionDto } from './dto/updateQuestion.dto';
 
 @RequireLogin()
+@RequireAdmin()
 @Controller('question')
 export class QuestionController {
   constructor(private readonly questionService: QuestionService) {}
@@ -25,6 +26,9 @@ export class QuestionController {
   }
   //查询题目,可以根据题目id查询 题目标题查询 题目标签查询
   //支持分页查询
+  //查询api任何用户都可以查询
+  @RequireAdmin(0)
+  @RequireLogin(false)
   @Get('search')
   async searchQuestion(
     @Query('pageNo', new DefaultValuePipe(1)) pageNo: number,
@@ -49,6 +53,8 @@ export class QuestionController {
   }
 
   //在更新题目之后进行题信息的回显
+  @RequireAdmin(0)
+  @RequireLogin(false)
   @Get(':id')
   async find(@Param('id') id: number) {
     return await this.questionService.findById(id);

@@ -5,7 +5,10 @@ import {
 } from '@nestjs/common';
 import { Request } from 'express';
 
-export const RequireLogin = () => SetMetadata('require_login', true);
+export const RequireLogin = (isLogin: boolean = true) =>
+  SetMetadata('require_login', isLogin);
+export const RequireAdmin = (role: number = 1) =>
+  SetMetadata('require_admin', role);
 
 //自定义param参数
 export const UserInfo = createParamDecorator(
