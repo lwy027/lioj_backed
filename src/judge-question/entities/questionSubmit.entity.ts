@@ -8,21 +8,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 import { Question } from '../../question/entities/question.entity';
-
-//判断信息的枚举值
-type judgeInfo = {
-  Accepted: '成功';
-  WrongAnswar: '答案错误';
-  CompileError: '编译错误';
-  MemoryLinitExceeded: '内存溢出';
-  TimeLimitExceeded: '超时';
-  PresentationError: '展示错误';
-  OutputLimitExceeded: '输出溢出';
-  Waiting: '等待中';
-  DangerousOperation: '危险操作';
-  RuntimeError: '运行错误'; //用户程序的问题
-  SystemError: '系统错误'; //做系统人的问题
-};
+import { judgeInfo } from 'src/type';
 
 @Entity({
   comment: '题目提交表',
@@ -44,7 +30,7 @@ export class QuestionSubmit {
   code: string;
   @Column({
     comment: '判题信息(json对象)',
-    type: 'text',
+    type: 'json',
   })
   judgeInfo: judgeInfo;
 

@@ -44,6 +44,7 @@ export class LoginGuard implements CanActivate {
       context.getClass(),
       context.getHandler(),
     ]);
+    console.log(requireLogin);
     //如果当前接口不需要登录直接返回，不需要走下面的逻辑
     if (!requireLogin) {
       return true;

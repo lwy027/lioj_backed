@@ -1,3 +1,4 @@
+import { JudgeConfig, judgeCase } from 'src/type';
 import { User } from 'src/user/entities/user.entity';
 import {
   Column,
@@ -8,20 +9,6 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-
-class JudgeConfig {
-  //时间限制
-  timeLimit: number;
-  //内存限制
-  memoryLimit: number;
-  //栈限制
-  stackLimit: number;
-}
-
-interface judgeCase {
-  input: string;
-  output: string;
-}
 
 @Entity({
   comment: '题目表',
@@ -66,12 +53,12 @@ export class Question {
 
   @Column({
     comment: '判题用例(json数组)',
-    type: 'text',
+    type: 'json',
   })
   judgeCase: Array<judgeCase>;
   @Column({
     comment: '判题配置(json对象)',
-    type: 'text',
+    type: 'json',
   })
   judgeConfig: JudgeConfig;
   @Column({
@@ -87,6 +74,7 @@ export class Question {
   @Column({
     comment: '是否删除',
     type: 'tinyint',
+    default: 0,
   })
   isDelete: number;
 
