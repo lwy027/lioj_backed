@@ -7,7 +7,7 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { Question } from './question.entity';
+import { Question } from '../../question/entities/question.entity';
 
 //判断信息的枚举值
 type judgeInfo = {

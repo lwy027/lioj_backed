@@ -6,11 +6,12 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { QuestionModule } from './question/question.module';
 import { User } from './user/entities/user.entity';
 import { Question } from './question/entities/question.entity';
-import { QuestionSubmit } from './question/entities/questionSubmit.entity';
 import { JwtModule } from '@nestjs/jwt';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { APP_GUARD } from '@nestjs/core';
 import { LoginGuard } from './aop/login.guard';
+import { JudgeQuestionModule } from './judge-question/judge-question.module';
+import { QuestionSubmit } from './judge-question/entities/questionSubmit.entity';
 @Module({
   imports: [
     UserModule,
@@ -52,6 +53,7 @@ import { LoginGuard } from './aop/login.guard';
       envFilePath: 'src/.env',
     }),
     QuestionModule,
+    JudgeQuestionModule,
   ],
   controllers: [AppController],
   providers: [
