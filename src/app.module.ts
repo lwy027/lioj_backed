@@ -9,6 +9,8 @@ import { Question } from './question/entities/question.entity';
 import { QuestionSubmit } from './question/entities/questionSubmit.entity';
 import { JwtModule } from '@nestjs/jwt';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { APP_GUARD } from '@nestjs/core';
+import { LoginGuard } from './aop/login.guard';
 @Module({
   imports: [
     UserModule,
@@ -52,6 +54,12 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
     QuestionModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [
+    AppService,
+    {
+      provide: APP_GUARD,
+      useClass: LoginGuard,
+    },
+  ],
 })
 export class AppModule {}
