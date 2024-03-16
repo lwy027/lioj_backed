@@ -22,8 +22,6 @@ export class PermissionGuard implements CanActivate {
     if (!request.user) {
       return true;
     }
-
-    console.log(request.user);
     const role = request.user.userRole;
     const requireAdmin: number = this.reflector.getAllAndOverride(
       'require_admin',

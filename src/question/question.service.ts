@@ -77,12 +77,15 @@ export class QuestionService {
       condition.tags = Like(`%${tags}%`);
     }
 
-    const res = await this.questionRepository.findAndCount({
+    const [data, totalCount] = await this.questionRepository.findAndCount({
       skip: skipCount,
       take: pageSize,
       where: condition,
     });
-    return res;
+    return {
+      data,
+      totalCount,
+    };
   }
   //更新题目
   async updateQuestion(updateQuestion: updateQuestionDto) {
@@ -92,6 +95,16 @@ export class QuestionService {
     });
     if (!question) {
       throw new BadRequestException('当前题目不存在');
+    }
+    if (
+      question.title == updateQuestion.title &&
+      question.content == updateQuestion.content &&
+      question.tags == updateQuestion.tags &&
+      question.answer == updateQuestion.answer &&
+      question.judgeCase == updateQuestion.judgeCase &&
+      question.judgeConfig == updateQuestion.judgeConfig
+    ) {
+      throw new HttpException('当前未作任何修改', HttpStatus.BAD_REQUEST);
     }
     question.title = updateQuestion.title;
     question.content = updateQuestion.content;

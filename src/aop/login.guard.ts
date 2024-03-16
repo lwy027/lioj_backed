@@ -66,7 +66,6 @@ export class LoginGuard implements CanActivate {
         userRole: data.userRole,
         userAvotor: data.userAvotor,
       };
-      console.log(request.user);
       return true;
     } catch (error) {
       throw new UnauthorizedException('token已失效请重新登录');

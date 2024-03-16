@@ -31,6 +31,7 @@ export class QuestionSubmit {
   @Column({
     comment: '判题信息(json对象)',
     type: 'json',
+    nullable: true,
   })
   judgeInfo: judgeInfo;
 
@@ -44,6 +45,7 @@ export class QuestionSubmit {
   @Column({
     comment: '是否删除',
     type: 'tinyint',
+    default: 0,
   })
   isDelete: number;
 
