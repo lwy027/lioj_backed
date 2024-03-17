@@ -1,5 +1,3 @@
-import { ApiProperty } from '@nestjs/swagger';
-
 //判题配置
 export class JudgeConfig {
   //时间限制

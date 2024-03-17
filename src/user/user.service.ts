@@ -65,8 +65,6 @@ export class UserService {
       userName: foundUser.userName,
       userAvotor: foundUser.userAvator,
       userRole: foundUser.userRole,
-      createDate: foundUser.createDate,
-      updateDate: foundUser.updateDate,
     };
     return vo;
   }

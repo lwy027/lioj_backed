@@ -54,7 +54,6 @@ export class LoginGuard implements CanActivate {
     if (!authorization) {
       throw new UnauthorizedException('用户未登录');
     }
-
     try {
       //2.进行解析拿到token,通过jwt的vertify进行token验证操作
       const token = authorization.split(' ')[1];
@@ -66,6 +65,7 @@ export class LoginGuard implements CanActivate {
         userRole: data.userRole,
         userAvotor: data.userAvotor,
       };
+      console.log(data);
       return true;
     } catch (error) {
       throw new UnauthorizedException('token已失效请重新登录');

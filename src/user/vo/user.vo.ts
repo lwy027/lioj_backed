@@ -9,10 +9,6 @@ class UserInfo {
   userRole: number;
   @ApiProperty({ example: 'http://localhost:3000' })
   userAvotor: string;
-  @ApiProperty({ example: 'xxxx-xx-xx' })
-  createDate: Date;
-  @ApiProperty({ example: 'xxxx-xx-xx' })
-  updateDate: Date;
 }
 
 export class UserVo {

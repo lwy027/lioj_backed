@@ -7,6 +7,7 @@ import { Request } from 'express';
 
 export const RequireLogin = (isLogin: boolean = true) =>
   SetMetadata('require_login', isLogin);
+
 export const RequireAdmin = (role: number = 1) =>
   SetMetadata('require_admin', role);
 
