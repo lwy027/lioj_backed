@@ -61,6 +61,9 @@ export class JudgeQuestionService {
     questionId: number,
     status: number,
   ) {
+    if (pageNo < 1) {
+      pageNo = 1;
+    }
     const skipCount = (pageNo - 1) * pageSize;
 
     const condition: Record<string, any> = {};

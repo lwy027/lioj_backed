@@ -10,6 +10,7 @@ import { Question } from './entities/question.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from 'src/user/entities/user.entity';
 import { updateQuestionDto } from './dto/updateQuestion.dto';
+import { QuestionListVo } from './vo/question.vo';
 
 @Injectable()
 export class QuestionService {
@@ -62,6 +63,10 @@ export class QuestionService {
     title: string,
     tags: string,
   ) {
+    if (pageNo < 1) {
+      pageNo = 1;
+    }
+
     const skipCount = (pageNo - 1) * pageSize;
 
     const condition: Record<string, any> = {};
@@ -82,10 +87,11 @@ export class QuestionService {
       take: pageSize,
       where: condition,
     });
-    return {
-      data,
-      totalCount,
-    };
+
+    const vo = new QuestionListVo();
+    vo.questions = data;
+    vo.totalCount = totalCount;
+    return vo;
   }
   //更新题目
   async updateQuestion(updateQuestion: updateQuestionDto) {
@@ -133,9 +139,7 @@ export class QuestionService {
 
   //删除题目
   async delete(id: number) {
-    const ques = await this.questionRepository.findOneBy({
-      id,
-    });
+    const ques = await this.findById(id);
 
     if (!ques) {
       throw new BadRequestException('当前题目不存在');
