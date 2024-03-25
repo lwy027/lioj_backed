@@ -95,6 +95,7 @@ export class QuestionService {
   }
   //更新题目
   async updateQuestion(updateQuestion: updateQuestionDto) {
+    console.log(updateQuestion);
     //1.根据传来的id查询是否存在当前题目
     const question = await this.questionRepository.findOneBy({
       id: updateQuestion.id,
@@ -140,7 +141,8 @@ export class QuestionService {
   //删除题目
   async delete(id: number) {
     const ques = await this.findById(id);
-
+    console.log(id);
+    console.log(ques);
     if (!ques) {
       throw new BadRequestException('当前题目不存在');
     }

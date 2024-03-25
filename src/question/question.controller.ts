@@ -89,7 +89,7 @@ export class QuestionController {
   @Get('search')
   async searchQuestion(
     @Query('pageNo', new DefaultValuePipe(1)) pageNo: number,
-    @Query('pageSize', new DefaultValuePipe(5)) pageSize: number,
+    @Query('pageSize', new DefaultValuePipe(100)) pageSize: number,
     @Query('id') id: number,
     @Query('title') title: string,
     @Query('tags') tags: string,

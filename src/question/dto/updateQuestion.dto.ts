@@ -4,14 +4,12 @@ import { JudgeConfig, judgeCase } from 'src/type';
 
 export class updateQuestionDto {
   //需要根据id判断需要更新的问题
-  @IsNotEmpty({
-    message: 'id不能为空',
-  })
+  // @IsNotEmpty({
+  //   message: 'id不能为空',
+  // })
   @ApiProperty()
   id: number;
-  @IsNotEmpty({
-    message: '用户id不能为空',
-  })
+
   @ApiProperty()
   userId: number;
   @IsNotEmpty({
