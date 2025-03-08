@@ -74,7 +74,6 @@ export class QuestionService {
     if (id) {
       condition.id = id;
     }
-
     if (title) {
       condition.title = Like(`%${title}%`);
     }

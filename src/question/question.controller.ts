@@ -94,6 +94,7 @@ export class QuestionController {
     @Query('title') title: string,
     @Query('tags') tags: string,
   ) {
+    console.log(pageNo, pageSize, id, tags);
     return await this.questionService.searchQuestion(
       pageNo,
       pageSize,
